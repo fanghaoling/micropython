@@ -598,7 +598,7 @@ void spi_transfer(const spi_t *self, size_t len, const uint8_t *src, uint8_t *de
 
     if (dest == NULL) {
         // send only
-        if (len == 1 || query_irq() == IRQ_STATE_DISABLED || !DMA_BUFFER(src)) {
+        if (len == 1 || query_irq() == IRQ_STATE_DISABLED || !DMA_BUFFER(src) || self->spi->Instance == SPI6) {
             status = HAL_SPI_Transmit(self->spi, (uint8_t *)src, len, timeout);
         } else {
             DMA_HandleTypeDef tx_dma;
@@ -624,7 +624,7 @@ void spi_transfer(const spi_t *self, size_t len, const uint8_t *src, uint8_t *de
         }
     } else if (src == NULL) {
         // receive only
-        if (len == 1 || query_irq() == IRQ_STATE_DISABLED || !DMA_BUFFER(dest)) {
+        if (len == 1 || query_irq() == IRQ_STATE_DISABLED || !DMA_BUFFER(dest) || self->spi->Instance == SPI6) {
             status = HAL_SPI_Receive(self->spi, dest, len, timeout);
         } else {
             DMA_HandleTypeDef tx_dma, rx_dma;
@@ -660,7 +660,7 @@ void spi_transfer(const spi_t *self, size_t len, const uint8_t *src, uint8_t *de
         }
     } else {
         // send and receive
-        if (len == 1 || query_irq() == IRQ_STATE_DISABLED || !DMA_BUFFER(src) || !DMA_BUFFER(dest)) {
+        if (len == 1 || query_irq() == IRQ_STATE_DISABLED || !DMA_BUFFER(src) || !DMA_BUFFER(dest) || self->spi->Instance == SPI6) {
             status = HAL_SPI_TransmitReceive(self->spi, (uint8_t *)src, dest, len, timeout);
         } else {
             DMA_HandleTypeDef tx_dma, rx_dma;

@@ -1,4 +1,4 @@
-#define MICROPY_HW_BOARD_NAME       "OPENMV4P"
+#define MICROPY_HW_BOARD_NAME       "OPENMV4P-By-fanghaoling"// 更改者
 #define MICROPY_HW_MCU_NAME         "STM32H743"
 #define MICROPY_PY_SYS_PLATFORM     "OpenMV4P-H7"
 #define MICROPY_HW_FLASH_FS_LABEL   "OPENMV"
@@ -17,6 +17,7 @@ typedef unsigned int mp_uint_t;     // must be pointer size
 #define MICROPY_HW_ENABLE_DAC       (1)
 #define MICROPY_HW_ENABLE_ADC       (1)
 #define MICROPY_HW_ENABLE_SPI2      (1)
+#define MICROPY_HW_ENABLE_SPI6      (1)
 #define MICROPY_HW_ENABLE_USB       (1)
 #define MICROPY_HW_HAS_FLASH        (1)
 #define MICROPY_HW_ENABLE_SDCARD    (1)
@@ -84,6 +85,12 @@ void board_low_power(int mode);
 #define MICROPY_HW_SPI2_SCK  (pin_B13)
 #define MICROPY_HW_SPI2_MISO (pin_B14)
 #define MICROPY_HW_SPI2_MOSI (pin_B15)
+
+// SPI6 buses
+#define MICROPY_HW_SPI6_NSS  (pin_G2)
+#define MICROPY_HW_SPI6_SCK  (pin_G13)
+#define MICROPY_HW_SPI6_MISO (pin_G12)
+#define MICROPY_HW_SPI6_MOSI (pin_G14)
 
 // FDCAN bus
 #define MICROPY_HW_CAN2_NAME "FDCAN2"
